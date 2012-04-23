@@ -17,14 +17,14 @@ var MainViewModel = function() {
 		self.showUserRegistration(false);
 		self.showRegistrationConfirmation(false);
 		
-		_gaq.push(['_trackEvent', 'SimpleRVSearch', 'SectionSelected', section])
+		_gaq.push(['_trackEvent', 'NavBar', 'SectionSelected', section])
 	}
 	
 	self.performHomeAction = function(){
 		self.canPerformHomeAction(false);
 		self.showUserRegistration(true);
 		
-		_gaq.push(['_trackEvent', 'SimpleRVSearch', 'HomeAction', '1'])
+		_gaq.push(['_trackEvent', 'HomeAction', 'Execute', '1'])
 		
 	}
 	
@@ -32,6 +32,6 @@ var MainViewModel = function() {
 		self.showUserRegistration(false);
 		self.showRegistrationConfirmation(true);
 		
-		_gaq.push(['_trackEvent', 'SimpleRVSearch', 'Registration.EmailAddress', self.userEnteredEmailAddress()])
+		_gaq.push(['_trackEvent', 'Registration', 'EmailAddress', self.userEnteredEmailAddress()])
 	}
 }
