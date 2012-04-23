@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Simple RV Search</title>
+		
+		<!-- Styles -->
+		<link href="http://s3.amazonaws.com/bootstrap.assets/assets/css/bootstrap.css" rel="stylesheet">
+		<link href="http://s3.amazonaws.com/bootstrap.assets/assets/css/bootstrap-respsonsive.css" rel="stylesheet">
+		<style type="text/css">
+      		body {
+	       		padding-top: 60px;
+	        	padding-bottom: 40px;
+	      	}
+	    </style>
+		
+		<!-- Touch Screen Icons -->
+		<link rel="shortcut icon" href="http://s3.amazonaws.com/bootstrap.assets/assets/ico/favicon.ico">
+    	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://s3.amazonaws.com/bootstrap.assets/assets/ico/apple-touch-icon-114-precomposed.png">
+    	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://s3.amazonaws.com/bootstrap.assets/assets/ico/apple-touch-icon-72-precomposed.png">
+    	<link rel="apple-touch-icon-precomposed" href="http://s3.amazonaws.com/bootstrap.assets/assets/ico/apple-touch-icon-57-precomposed.png">
+	</head>
+	<body>
+		<div class="navbar navbar-fixed-top">
+      		<div class="navbar-inner">
+        		<div class="container">
+          			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            		<span class="icon-bar"></span>
+            		<span class="icon-bar"></span>
+            		<span class="icon-bar"></span>
+          			</a>
+          			<a class="brand" href="#">Simple RV Search</a>
+          			<div class="nav-collapse">
+            			<ul class="nav">
+              				<li id="homeLink" class="active"><a href="#home">Home</a></li>
+              				<li id="aboutLink"> <a href="#about">About</a></li>
+              				<li id="contactLink"> <a href="#contact">Contact</a></li>
+            			</ul>
+          			</div><!--/.nav-collapse -->
+        		</div>
+      		</div>
+    	</div>
+		<div class="container">
+			<div id="homeContent" class="hero-unit">
+        		<h2>Looking for a simple way to find the RV that's right for you?</h2>
+        		<p>Simple RV Search is an intuitive, easy to use tool that can help you find the recreational vehichle you're looking for. Give it a try!</p>
+        		<p><a id="homeAction" class="btn btn-primary btn-large"><i class="icon-search icon-white"></i> Start Searching</a></p>
+      		</div>
+      		<div id="aboutContent" class="hero-unit" style="display:none">
+        		<h2>Why Simple RV Search?</h2>
+        		<p>
+        			Simple RV Search is based on the idea that people need a quick and easy way to find the right motorhome, trailer, or camper.
+        			Instead of searching by make, model, etc you select your requirements / needs and we find the ones that fit you the best.
+        		</p>
+      		</div>
+      		<div id="contactContent" class="hero-unit" style="display:none">
+        		<h2>Who do I talk to?</h2>
+        		<p>
+        			For more information, please contact us at <a href="mailto:info@simplervsearch.com">info@simplervsearch.com</a>
+        		</p>
+
+      		</div>
+      		<div id="signUpContent" style="display:none">
+      			<div class="alert alert-block">
+  						<h3 class="alert-heading">We're not quite ready!</h3>
+  						<p>
+  							It seems you found us before we have everything in place.  If you would like to be contacted when we have something to show, please leave us your email addresss and we'll get back to you!
+						</p>
+				</div>
+				<div class="well form-inline">
+  						<input type="text" class="span3" placeholder="Email Address">					
+  						<button id="signUpButton" class="btn">Notify Me!</button>
+				</div>
+      		</div>
+      		<div>
+      			<div id="signUpSuccessMessage" class="alert alert-success" style="display:none">
+  						<h3 class="alert-heading">Thanks!</h3>
+  						<p>
+  							When we have something to show, we'll let you know!
+  						</p>
+				</div>
+      		</div>
+			<footer>
+        		<p>&copy; Simple RV Search 2012</p>
+      		</footer>
+      	</div>
+		<!-- Script files -->
+		<script src="http://s3.amazonaws.com/bootstrap.assets/assets/js/jquery.js"></script>
+    	<script src="http://s3.amazonaws.com/bootstrap.assets/assets/js/bootstrap-transition.js"></script>
+    	<script src="http://s3.amazonaws.com/bootstrap.assets/assets/js/bootstrap-alert.js"></script>
+    	<script src="http://s3.amazonaws.com/bootstrap.assets/assets/js/bootstrap-modal.js"></script>
+    	<script src="http://s3.amazonaws.com/bootstrap.assets/assets/js/bootstrap-dropdown.js"></script>
+    	<script src="http://s3.amazonaws.com/bootstrap.assets/assets/js/bootstrap-scrollspy.js"></script>
+    	<script src="http://s3.amazonaws.com/bootstrap.assets/assets/js/bootstrap-tab.js"></script>
+    	<script src="http://s3.amazonaws.com/bootstrap.assets/assets/js/bootstrap-tooltip.js"></script>
+    	<script src="http://s3.amazonaws.com/bootstrap.assets/assets/js/bootstrap-popover.js"></script>
+    	<script src="http://s3.amazonaws.com/bootstrap.assets/assets/js/bootstrap-button.js"></script>
+    	<script src="http://s3.amazonaws.com/bootstrap.assets/assets/js/bootstrap-collapse.js"></script>
+    	<script src="http://s3.amazonaws.com/bootstrap.assets/assets/js/bootstrap-carousel.js"></script>
+    	<script src="http://s3.amazonaws.com/bootstrap.assets/assets/js/bootstrap-typeahead.js"></script>
+    	
+    	<script>
+    		$("#homeLink").click(function ( event ) {
+      			event.preventDefault();
+				
+				$("#signUpContent").hide(); 
+				$("#aboutContent").hide();
+      			$("#contactContent").hide();  
+      			$("#signUpSuccessMessage").hide();
+      			$("#homeContent").show();
+      			
+      			$("#homeLink").addClass("active");
+      			$("#aboutLink").removeClass("active");
+      			$("#contactLink").removeClass("active");
+
+    		});
+    		$("#aboutLink").click(function ( event ) {
+      			event.preventDefault();
+      			
+      			$("#signUpContent").hide(); 
+      			$("#homeContent").hide();
+      			$("#contactContent").hide();
+      			$("#signUpSuccessMessage").hide();
+      			$("#aboutContent").show();
+      			
+      			$("#homeLink").removeClass("active");
+      			$("#aboutLink").addClass("active");
+      			$("#contactLink").removeClass("active");
+      			
+    		});
+    		$("#contactLink").click(function ( event ) {
+      			event.preventDefault();
+      			
+      			$("#signUpContent").hide(); 
+      			$("#homeContent").hide();
+      			$("#aboutContent").hide();
+      			$("#signUpSuccessMessage").hide();
+      			$("#contactContent").show();
+      			
+      			$("#homeLink").removeClass("active");
+      			$("#aboutLink").removeClass("active");
+      			$("#contactLink").addClass("active");
+    		});
+    		$("#homeAction").click(function ( event ) {
+    			$("#signUpContent").show();
+    			$("#signUpSuccessMessage").hide();
+    		});
+    		$("#signUpButton").click(function (event){
+    			$("#signUpSuccessMessage").show();
+    			$("#signUpContent").hide();
+    			
+    		});
+    	</script>
+	</body>
+</html>
