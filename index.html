@@ -5,7 +5,7 @@
 		
 		<!-- Styles -->
 		<link href="http://s3.amazonaws.com/bootstrap.assets/assets/css/bootstrap.css" rel="stylesheet">
-		<link href="http://s3.amazonaws.com/bootstrap.assets/assets/css/bootstrap-respsonsive.css" rel="stylesheet">
+		<link href="http://s3.amazonaws.com/bootstrap.assets/assets/css/bootstrap-responsive.css" rel="stylesheet">
 		<style type="text/css">
       		body {
 	       		padding-top: 60px;
@@ -30,54 +30,52 @@
           			</a>
           			<a class="brand" href="#">Simple RV Search</a>
           			<div class="nav-collapse">
-            			<ul class="nav">
-              				<li id="homeLink" class="active"><a href="#home">Home</a></li>
-              				<li id="aboutLink"> <a href="#about">About</a></li>
-              				<li id="contactLink"> <a href="#contact">Contact</a></li>
+            			<ul class="nav" data-bind="foreach: availableSections">
+            				<li data-bind="css: { 'active': $parent.selectedSection() === $data }"><a href="#$data" data-bind="text: $data, click: $parent.selectSection"></a></li>
             			</ul>
-          			</div><!--/.nav-collapse -->
+          			</div>
         		</div>
       		</div>
     	</div>
 		<div class="container">
-			<div id="homeContent" class="hero-unit">
+			<div id="homeContent" class="hero-unit" style="display:none" data-bind="visible: selectedSection() ==='Home'">
         		<h2>Looking for a simple way to find the RV that's right for you?</h2>
         		<p>Simple RV Search is an intuitive, easy to use tool that can help you find the recreational vehichle you're looking for. Give it a try!</p>
-        		<p><a id="homeAction" class="btn btn-primary btn-large"><i class="icon-search icon-white"></i> Start Searching</a></p>
+        		<p><a id="homeAction" class="btn btn-primary btn-large" data-bind="click: performHomeAction, visible: canPerformHomeAction"><i class="icon-search icon-white"></i> Start Searching</a></p>
+        		
+        		<div id="signUpContent" style="display:none" data-bind="visible:showUserRegistration">
+					<div class="alert alert-block">
+							<h3 class="alert-heading">We're not quite ready!</h3>
+							<p>
+								It seems you found us before we have everything in place.  If you would like to be contacted when we have something to show, please leave us your email addresss and we'll get back to you!
+							</p>
+					</div>
+					<div class="well form-inline">
+							<input type="text" class="span3" placeholder="Email Address">					
+							<button id="signUpButton" class="btn" data-bind="click: registerUser">Notify Me!</button>
+					</div>
+				</div>
+				<div>
+					<div id="signUpSuccessMessage" class="alert alert-success" style="display:none" data-bind="visible: showRegistrationConfirmation">
+							<h3 class="alert-heading">Thanks!</h3>
+							<p>
+								When we have something to show, we'll let you know!
+							</p>
+					</div>
+				</div>
       		</div>
-      		<div id="aboutContent" class="hero-unit" style="display:none">
+      		<div id="aboutContent" class="hero-unit" style="display:none" data-bind="visible: selectedSection() ==='About'">
         		<h2>Why Simple RV Search?</h2>
         		<p>
         			Simple RV Search is based on the idea that people need a quick and easy way to find the right motorhome, trailer, or camper.
         			Instead of searching by make, model, etc you select your requirements / needs and we find the ones that fit you the best.
         		</p>
       		</div>
-      		<div id="contactContent" class="hero-unit" style="display:none">
+      		<div id="contactContent" class="hero-unit" style="display:none" data-bind="visible: selectedSection() ==='Contact'">
         		<h2>Who do I talk to?</h2>
         		<p>
         			For more information, please contact us at <a href="mailto:info@simplervsearch.com">info@simplervsearch.com</a>
         		</p>
-
-      		</div>
-      		<div id="signUpContent" style="display:none">
-      			<div class="alert alert-block">
-  						<h3 class="alert-heading">We're not quite ready!</h3>
-  						<p>
-  							It seems you found us before we have everything in place.  If you would like to be contacted when we have something to show, please leave us your email addresss and we'll get back to you!
-						</p>
-				</div>
-				<div class="well form-inline">
-  						<input type="text" class="span3" placeholder="Email Address">					
-  						<button id="signUpButton" class="btn">Notify Me!</button>
-				</div>
-      		</div>
-      		<div>
-      			<div id="signUpSuccessMessage" class="alert alert-success" style="display:none">
-  						<h3 class="alert-heading">Thanks!</h3>
-  						<p>
-  							When we have something to show, we'll let you know!
-  						</p>
-				</div>
       		</div>
 			<footer>
         		<p>&copy; Simple RV Search 2012</p>
@@ -98,57 +96,9 @@
     	<script src="http://s3.amazonaws.com/bootstrap.assets/assets/js/bootstrap-carousel.js"></script>
     	<script src="http://s3.amazonaws.com/bootstrap.assets/assets/js/bootstrap-typeahead.js"></script>
     	
-    	<script>
-    		$("#homeLink").click(function ( event ) {
-      			event.preventDefault();
-				
-				$("#signUpContent").hide(); 
-				$("#aboutContent").hide();
-      			$("#contactContent").hide();  
-      			$("#signUpSuccessMessage").hide();
-      			$("#homeContent").show();
-      			
-      			$("#homeLink").addClass("active");
-      			$("#aboutLink").removeClass("active");
-      			$("#contactLink").removeClass("active");
-
-    		});
-    		$("#aboutLink").click(function ( event ) {
-      			event.preventDefault();
-      			
-      			$("#signUpContent").hide(); 
-      			$("#homeContent").hide();
-      			$("#contactContent").hide();
-      			$("#signUpSuccessMessage").hide();
-      			$("#aboutContent").show();
-      			
-      			$("#homeLink").removeClass("active");
-      			$("#aboutLink").addClass("active");
-      			$("#contactLink").removeClass("active");
-      			
-    		});
-    		$("#contactLink").click(function ( event ) {
-      			event.preventDefault();
-      			
-      			$("#signUpContent").hide(); 
-      			$("#homeContent").hide();
-      			$("#aboutContent").hide();
-      			$("#signUpSuccessMessage").hide();
-      			$("#contactContent").show();
-      			
-      			$("#homeLink").removeClass("active");
-      			$("#aboutLink").removeClass("active");
-      			$("#contactLink").addClass("active");
-    		});
-    		$("#homeAction").click(function ( event ) {
-    			$("#signUpContent").show();
-    			$("#signUpSuccessMessage").hide();
-    		});
-    		$("#signUpButton").click(function (event){
-    			$("#signUpSuccessMessage").show();
-    			$("#signUpContent").hide();
-    			
-    		});
-    	</script>
+    	<script src="scripts/knockoutjs/2.0/knockout-2.0.0.js"></script>
+    	
+    	<script src="scripts/mainviewmodel.js"></script>
+    	<script>ko.applyBindings(new MainViewModel());</script>
 	</body>
 </html>
