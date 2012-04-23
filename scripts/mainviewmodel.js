@@ -16,16 +16,22 @@ var MainViewModel = function() {
 		
 		self.showUserRegistration(false);
 		self.showRegistrationConfirmation(false);
+		
+		_gaq.push(['_trackEvent', 'SimpleRVSearch', 'SectionSelected', section])
 	}
 	
 	self.performHomeAction = function(){
 		self.canPerformHomeAction(false);
 		self.showUserRegistration(true);
 		
+		_gaq.push(['_trackEvent', 'SimpleRVSearch', 'HomeAction', '1'])
+		
 	}
 	
 	self.registerUser = function(){
 		self.showUserRegistration(false);
 		self.showRegistrationConfirmation(true);
+		
+		_gaq.push(['_trackEvent', 'SimpleRVSearch', 'Registration.EmailAddress', self.userEnteredEmailAddress()])
 	}
 }

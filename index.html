@@ -18,6 +18,22 @@
     	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://s3.amazonaws.com/bootstrap.assets/assets/ico/apple-touch-icon-114-precomposed.png">
     	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://s3.amazonaws.com/bootstrap.assets/assets/ico/apple-touch-icon-72-precomposed.png">
     	<link rel="apple-touch-icon-precomposed" href="http://s3.amazonaws.com/bootstrap.assets/assets/ico/apple-touch-icon-57-precomposed.png">
+    	
+    	<!-- Google Analytics Configuration -->
+    	<script type="text/javascript">
+		
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-31108123-1']);
+		  _gaq.push(['_setDomainName', 'simplervsearch.com']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		
+		</script>
 	</head>
 	<body>
 		<div class="navbar navbar-fixed-top">
@@ -51,7 +67,7 @@
 							</p>
 					</div>
 					<div class="well form-inline">
-							<input type="text" class="span3" placeholder="Email Address">					
+							<input type="text" class="span3" placeholder="Email Address" data=bind="value:userEnteredEmailAddress">					
 							<button id="signUpButton" class="btn" data-bind="click: registerUser">Notify Me!</button>
 					</div>
 				</div>
